@@ -1,0 +1,40 @@
+<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+
+    <header class="masthead mb-auto">
+      <div class="inner">
+        <h3 class="masthead-brand">15Puzzle</h3>
+
+
+
+
+
+
+        <nav class="nav nav-masthead justify-content-center">
+            <a class="nav-link" style="margin-right: 1rem; cursor: pointer;" routerLinkActive="active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" *ngIf="IsLoggedIn()">{{User()}}</a>
+            <div class="dropdown-menu" id="ddm">
+                <a  routerLinkActive="active" routerLink="/logout">Logout</a>
+            </div>
+
+          <a class="nav-link" routerLinkActive="active" routerLink="/login" *ngIf="!IsLoggedIn()">Login</a>
+          <a class="nav-link" routerLinkActive="active" routerLink="/deck">Deck</a>
+          <a class="nav-link" routerLinkActive="active" routerLink="/leaderboard">Leaderboard</a>
+        </nav>
+      </div>
+    </header>
+
+    <main role="main" class="inner cover">
+      <router-outlet></router-outlet>
+    </main>
+
+    <footer class="mastfoot mt-auto">
+      <div class="inner" style="font-size: 0.7rem; text-align: center;">
+        <p>If you need, some <a href="https://www.instructables.com/id/How-To-Solve-The-15-Puzzle/">instructions</a> can help you to solve this puzzle.</p>
+      </div>
+    </footer>
+  </div>
+
+  <div *ngIf="this.notifyHubService.notification!=null"  style="position: fixed; right: 1vh; bottom: 1vh; background-color: rgba(58, 27, 10, 0.781); border-radius: 1vh;">
+    <p style="width: 15vw; height:20vh; padding: 20px;">
+      {{this.notifyHubService.notification}}
+    </p>
+  </div>

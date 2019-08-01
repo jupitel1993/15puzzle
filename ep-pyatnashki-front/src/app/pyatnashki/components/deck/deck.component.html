@@ -1,0 +1,34 @@
+<div *ngIf="deck!=null">
+    <div id="gui">
+      <div class="row">
+        <div *ngIf="logged" class="col-md-3 offset-md-2">
+          <h5 id="score">Score: {{deck.score}}</h5>
+        </div>
+        <div *ngIf="logged" class="col-md-3 offset-md-2">
+          <button id="reset" *ngIf="logged" class="btn btn-primary pull-right" (click)="newDeck()" style="box-shadow: none;">Reset</button>
+        </div>
+        <div class="col-md-8 offset-md-2" style="text-align: center;">
+          <div id="deck">
+            <div *ngFor="let row of deck.tiles">
+              <app-tile  class="tile" id="tile{{tile.num}}" (click)="moveTile(tile.num)" [disabled]=deck.victory [num]=tile.num *ngFor="let tile of row"></app-tile>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+<div *ngIf="!logged" id="notLogged">
+    <div id="notLoggedBackground">
+        <h3>
+          To start the game you need to login
+        </h3>
+    </div>
+  </div>
+
+<div *ngIf="deck.victory" id="victory">
+    <div id="victoryBackground">
+        <h1>
+            Victory!!! Your score is {{deck.score}}
+        </h1>
+    </div>
+</div>
